@@ -1,4 +1,14 @@
-<center>{{ name }}</center>
-<center>{{ usr }}</center>
-<center>Welcome, {{ app.user.username }}</center>
-{{ test }}
+{% extends "AcmeCatalogBundle::layout.html.twig" %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block body %}
+       {{ test }}
+		<center><h1>Каталог товаров</h1></center>
+		<center>{{ welcom }}  <b>{{ user }}</b>!</center><br>
+		<center>{{ auth | raw }}</center>
+{% endblock %}
+
+
+
+

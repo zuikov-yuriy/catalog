@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	  <title>{% block title %}Test Application{% endblock %}</title>
+	  <link href="Symfony/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+	    <script src="Symfony/bootstrap/js/bootstrap.min.js"></script>
+	    <a href="/"><img src="{{ asset("Symfony/img/logo.gif") }}" alt="Symfony"></a>
+            <a href="/logout">LOGOUT</a>
+        <div id="content">
+            {% block body %}{% endblock %}
+        </div>
+    </body>
+</html>

@@ -1,18 +1,27 @@
-{% if error %}
-    <div>{{ error.message }}</div>
-{% endif %}
+{% extends "AcmeCatalogBundle::layout.html.twig" %}
 
-<form action="{{ path('login_check') }}" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+{% block title %}Авторизация{% endblock %}
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="_password" />
+{% block body %}
 
-    {#
-        Если вы хотите контролировать URL, на который перенаправить пользователя:
-        <input type="hidden" name="_target_path" value="/account" />
-    #}
+<div style="margin:0 auto; width:225px;">
+    <div style="font-size:18px; text-align:center; color:#666; margin-bottom:10px;">Авторизация</div>
 
-    <input type="submit" name="login" />
-</form>
+	<form action="{{ path('login_check') }}" method="post">
+		<label for="username">Имя пользователя:</label>
+		<input type="text" id="username" name="_username" value="{{ last_username }}" />
+		<label for="password">Пароль:</label>
+		<input type="password" id="password" name="_password" />
+		{# Если вы хотите контролировать URL, на который перенаправить пользователя:<input type="hidden" name="_target_path" value="/account" />#}
+		<center>
+		<input type="submit" name="login" class="btn btn-info"/>
+		</center>
+	</form>
+	
+		{% if error %}
+		   <span style="color:red;">Ошибка:</span><span>{{ error.message }}!</span>
+  	        {% endif %}
+</div>
+
+
+{% endblock %}

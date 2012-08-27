@@ -16,34 +16,40 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
      */
 class DefaultController extends Controller
 {
-    
-    
-    
-    
-    
+
+
     /**
      * @Route("/")
      * @Template()
      * 
      */
     public function indexAction()
-    {   
-        $usr = $this->get('security.context')->getToken()->getUser();
-        
-        return array(
-                     'test' => 'test' , 
-                     'name' => 'welcom to catalog' , 
-                     'usr'  => $usr->getUsername(),
-                     'user' => $this->get('security.context')->getToken()->getUser(),
-                );
-        
+    {       
+	$secur =  $this->get('security.context');
 
+	if ((false ===   $secur->isGranted('ROLE_USER')) and  
+            (false ===   $secur->isGranted('ROLE_ADMIN')) ){
+	         $user = "ГОСТЬ";
+                 $auth = 'Для просмотра большего числа товаров  
+                           <a href="/login">Авторизируйтесь</a>!<br>
+                          Если нет Логина и Пароля   
+                           <a href="/registration">Регистрируйтесь</a>!';
+        }  else { 
+          $user  = $secur->getToken()->getUser()->getUsername();
+              $auth = '';
+        }
+
+        return $this->render('AcmeCatalogBundle:Default:index.html.twig', 
+                    array(
+                        'test' => '' , 
+                        'welcom' => 'Добро пожаловать ' , 
+                        'user'  => $user,
+                        'auth'  =>  $auth,
+                        //'user' => $this->get('security.context')->getToken()->getUser(),  twig - <center>Welcome, {{ app.user.username }}</center>
+               ));
     }
     
-    
-    
-    
-    
+
     
      /**
      * @Route("/product/")
@@ -51,14 +57,32 @@ class DefaultController extends Controller
      * @Secure(roles="ROLE_USER")
      */
     public function productAction()
-    {
+    {  
         return array('name' => 'NAME PRODUCT');
     }
 
     
     
-    
-    
+         /**
+     * @Route("/test/")
+     * @Template()
+     * @
+     */
+    public function testAction()
+    {        
+	//$usr = $this->get('security.context')->getToken()->getUser();
+        //$user = $usr->getUsername();
+	  $secur =  $this->get('security.context');
+                    if ((false ===   $secur->isGranted('ROLE_USER')) ||  
+                        (false ===   $secur->isGranted('ROLE_ADMIN')) ){
+                            $name = "ГОСТЬ";
+                      }  else { 
+                         $name = $secur->getToken()->getUser()->getUsername();
+                      }
+            return array('name' => $name);
+    }
+
+
     
     /**
      * @Route ("/create/")

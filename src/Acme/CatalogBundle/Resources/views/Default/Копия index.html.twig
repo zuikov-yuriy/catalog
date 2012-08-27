@@ -1,0 +1,14 @@
+{% extends 'AcmeCatalogBundle::layout.html.twig' %}
+
+{% block content %}
+
+{{ test }}
+
+<img src="{{ asset('symfony/web/bundles/acmecatalog/images/logo.gif') }}" alt="Symfony">
+<center><h1>Каталог товаров</h1></center>
+<center>{{ welcom }}  <b>{{ user }}</b>!</center><br>
+
+<center>{{ auth }}</center>
+
+
+{% endblock %}

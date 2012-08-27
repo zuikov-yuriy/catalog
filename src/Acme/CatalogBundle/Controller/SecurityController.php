@@ -27,4 +27,11 @@ class SecurityController extends Controller
             'error'         => $error,
         ));
     }
+    
+    
+    public function logoutAction()
+    {
+       $this->get('security.context')->setToken(null);
+       return $this->get('request')->getSession()->invalidate();
+    }
 }

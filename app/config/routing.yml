@@ -20,6 +20,10 @@ login_check:
     pattern:   /login_check
 
 
+logout:
+    pattern:   /logout
+    defaults:  { _controller: AcmeCatalogBundle:Security:logout }
+
 
     
     
