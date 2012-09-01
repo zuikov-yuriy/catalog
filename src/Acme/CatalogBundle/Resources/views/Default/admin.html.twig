@@ -1,0 +1,17 @@
+{% extends "AcmeCatalogBundle::layout.html.twig" %}
+
+{% block title %} - Админ панел{% endblock %}
+
+{% block body %}
+
+  <div style="margin:0 auto; width:225px;">
+      
+         <form action="{{ path('admin')}}" method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+
+            <input type="submit" class="btn"/>
+        </form>
+      
+  </div>   
+        
+{% endblock %}

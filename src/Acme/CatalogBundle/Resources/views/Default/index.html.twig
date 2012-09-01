@@ -3,10 +3,31 @@
 {% block title %}Главная страница{% endblock %}
 
 {% block body %}
-       {{ test }}
-		<center><h1>Каталог товаров</h1></center>
-		<center>{{ welcom }}  <b>{{ user }}</b>!</center><br>
-		<center>{{ auth | raw }}</center>
+
+    <center><h1>Каталог товаров</h1></center>
+    <center>Добро пожаловать  <b>{{ info['user'] }}</b>!</center><br>
+    <center>{{ info['auth'] | raw }}</center>
+    <center>{{ info['title'] | raw }}</center>
+
+    <br>
+    <div style="width: 600px; height: auto; margin: 0 auto;">
+
+        {% for product in products %}
+          <div style="float:left; width:290px; height:210px; border: 1px solid #00aa00; margin:4px;">
+              <br>
+              <center>Название: <b>{{ product.name }}</b></center>
+              <center>Описание: <b>{{ product.description }}</b></center>
+              <center>     
+                <img src="{{ product.img }}" width="189" height="255" alt="{{ product.name }}">
+              </center>
+              <center>Цена: <b style="color:red;">{{ product.price }}</b> y.e</center>
+          </div>              
+        {% endfor %}   
+        
+        <div style="clear: both;" />
+    </div>
+                
+      
 {% endblock %}
 
 

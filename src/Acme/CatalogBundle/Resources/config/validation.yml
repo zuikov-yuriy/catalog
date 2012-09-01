@@ -1,0 +1,26 @@
+Acme\CatalogBundle\Entity\Task:
+    properties:
+        task:
+            - NotBlank: ~
+            - MinLength: 3
+        dueDate:
+            - NotBlank: ~
+            - Type: \DateTime
+            
+Acme\CatalogBundle\Entity\User:
+    properties:
+        firstName:
+            - NotBlank: ~
+            - MinLength: 3
+        lastName:
+            - NotBlank: ~
+            - MinLength: 3
+        email:
+            - NotBlank: ~
+            - MinLength: 3          
+        username:
+            - NotBlank: ~
+            - MinLength: 3        
+        password:
+            - NotBlank: ~
+            - MinLength: 3          

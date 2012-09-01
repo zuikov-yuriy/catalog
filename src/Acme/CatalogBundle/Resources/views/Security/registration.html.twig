@@ -1,0 +1,18 @@
+{% extends "AcmeCatalogBundle::layout.html.twig" %}
+  
+{% block title %}Регистрация{% endblock %}
+
+{% block body %}
+   <div style="margin:0 auto; width:225px;">
+    <div style="font-size:18px; text-align:center; color:#666; margin-bottom:10px;">Регистрация</div>
+       
+    
+       <form action="{{ path('registration')}}" method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+
+            <input type="submit" class="btn"/>
+        </form>
+    
+    
+    </div>
+  {% endblock %}

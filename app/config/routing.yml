@@ -1,17 +1,13 @@
-_default:
-    pattern:  /
-    defaults: { _controller: AcmeCatalogBundle:Default:index }
+admin:
+    pattern:   /admin/
+    defaults:  { _controller: AcmeCatalogBundle:Default:admin } 
+
 
 AcmeCatalogBundle:
     resource: "@AcmeCatalogBundle/Controller/"
-    type:     annotation
-    prefix:   /
+    type: annotation
+    prefix: /
     
-testcatalog:
-    pattern:   /testcatalog
-    defaults:  { _controller: AcmeCatalogBundle:Default:index }
-
-
 login:
     pattern:   /login
     defaults:  { _controller: AcmeCatalogBundle:Security:login }
@@ -19,14 +15,33 @@ login:
 login_check:
     pattern:   /login_check
 
-
 logout:
     pattern:   /logout
     defaults:  { _controller: AcmeCatalogBundle:Security:logout }
 
+registration:
+    pattern:   /registration
+    defaults:  { _controller: AcmeCatalogBundle:Security:registration }  
 
+testform:
+    pattern:   /testform
+    defaults:  { _controller: AcmeCatalogBundle:Security:testform } 
+   
+test_testform:
+    pattern:   /test_testform
+    defaults:  { _controller: AcmeCatalogBundle:Security:testform } 
     
+new:
+    pattern:   /new
+    defaults:  { _controller: AcmeCatalogBundle:Security:new }
     
+task_new:
+    pattern:   /task_new
+    defaults:  { _controller: AcmeCatalogBundle:Security:new }
+
+createuser:
+    pattern:   /createuser
+    defaults:  { _controller: AcmeCatalogBundle:Security:createuser }
 # Internal routing configuration to handle ESI
 #_internal:
 #   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
