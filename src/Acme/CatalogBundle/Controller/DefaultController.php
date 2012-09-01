@@ -27,10 +27,19 @@ class DefaultController extends Controller
             (false ===   $secur->isGranted('ROLE_ADMIN')) ){
 	         $info['user'] = "ГОСТЬ";
                  $info['auth'] = 'Для просмотра большего числа товаров  <a href="/login">Авторизируйтесь</a>!<br>Если нет Логина и Пароля   <a href="/registration">Регистрируйтесь</a>!';
-                 $info['title'] = 'Количество товаров для незарегистрированного пользователя ограниченно!';
-                 $product = $this->getDoctrine()
-                        ->getRepository('AcmeCatalogBundle:Product')
-                        ->findAll();
+                 $info['title'] = 'Количество товаров для не авторизованного пользователя ограниченно!';
+                 
+                 $repository = $this->getDoctrine()->getRepository('AcmeCatalogBundle:Product');
+                 $query = $repository->createQueryBuilder('p')
+                        ->getQuery()
+                        ->setMaxResults(4);
+                 $product = $query->getResult();
+
+                 //  foreach ($product as $p) {
+                 //   $idd. = $p->getUsers()-> getUsername();
+                 // }
+    
+                  
              }  else { 
                 // if (true === $secur->isGranted('ROLE_USER')) {return $this->redirect('/user/'.$uid);}
                  $info['user']  = $secur->getToken()->getUser()->getUsername();
@@ -39,9 +48,11 @@ class DefaultController extends Controller
                  $product = $this->getDoctrine()
                         ->getRepository('AcmeCatalogBundle:Product')
                         ->findByUserid($secur->getToken()->getUser()->getId());
+                 
+        
                 }
 
-     return array('info'  =>  $info, 'products' => $product, );
+     return array('info'  =>  $info, 'products' => $product,  );
     }
     
 
@@ -51,12 +62,12 @@ class DefaultController extends Controller
             $users = $this->getDoctrine()
                     ->getRepository('AcmeCatalogBundle:User')
                     ->findAll();
-  
-            $userChoices = array();
+
             foreach ($users as $u) {
                 $key = $u->getId();
                 $value = $u->getUsername();
-                $userChoices[$key] = $value.'-'.$key;
+                $k = $value.'-'.$key;
+                $userSelect[$k] = $value.'(id - '.$key.')';
              }
 
                $product = new Product();
@@ -66,7 +77,7 @@ class DefaultController extends Controller
                     ->add('Img', 'file')
                     ->add('Price', 'text')
                     ->add('Userid', 'choice', array(
-                            'choices'=>$userChoices,
+                            'choices'=>$userSelect,
                             'required' => false,
                           ))
      
@@ -77,11 +88,15 @@ class DefaultController extends Controller
                     if ($form->isValid()) {   
                         
                         $file = $form['Img']->getData();
-                        $file->move('S:\home\localhost\www\symfony\img', $file->getClientOriginalName());
+                        $secur = $this->get('security.context');
+                        
+                        $uf = explode("-" , $product->getUserid());
+                        $file->move($_SERVER['DOCUMENT_ROOT'].'/Symfony/img/'.$uf[0], $file->getClientOriginalName());
                         
                          $create = $form->getData();
                          
-                         $product->setImg('http://localhost/symfony/img/'.$file->getClientOriginalName()); 
+                         $product->setUserid($uf[1]);
+                         $product->setImg('img/'.$uf[0].'/'.$file->getClientOriginalName()); 
                          
                          $em = $this->getDoctrine()->getEntityManager();
                          $em->persist($create);
@@ -89,13 +104,17 @@ class DefaultController extends Controller
                         }
                     }
                
+               $products = $this->getDoctrine()
+                        ->getRepository('AcmeCatalogBundle:Product')
+                        ->findAll();
                
+
                
           return $this->render('AcmeCatalogBundle:Default:admin.html.twig', 
-                    array('form' => $form->createView()));
+                    array('form' => $form->createView(), 'products'=>$products ));
        }
 
-       
+
 
        
       /**

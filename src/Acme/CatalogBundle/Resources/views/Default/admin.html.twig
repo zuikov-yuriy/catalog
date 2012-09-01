@@ -5,13 +5,35 @@
 {% block body %}
 
   <div style="margin:0 auto; width:225px;">
-      
+     <center> Форма добавления товара!!</center>
          <form action="{{ path('admin')}}" method="post" {{ form_enctype(form) }}>
             {{ form_widget(form) }}
 
             <input type="submit" class="btn"/>
         </form>
-      
   </div>   
         
+ <div style="margin:0 auto; width:600px;">
+     <center><h2>Продукты каталога</h2></center>
+      {% for product in products %}
+          <div style="width:600px; height:auto; border: 1px solid #e8e8e8; margin:5px; padding:3px; background-color: #f7f7f7;">
+              <div style="float:left;">
+                <img  src="http://localhost/Symfony/{{ product.img }}" width="120" height="80" alt="{{ product.name }}">
+              </div>
+              <div style="float:left; margin-left: 10px;">    
+               Название: <b>{{ product.name }}</b><br>
+               Описание: <b>{{ product.description }}</b><br>
+               Цена: <b style="color:red;">{{ product.price }}</b> y.e
+              </div>  
+              <div style="float:right; margin-right: 140px;">    
+                Пользователь
+                
+              </div>     
+                  
+                <div style="clear: both;"></div>
+          </div>   
+      
+        {% endfor %}   
+     <br><br>
+ </div>
 {% endblock %}

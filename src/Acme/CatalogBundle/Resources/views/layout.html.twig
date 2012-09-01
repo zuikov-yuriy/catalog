@@ -11,6 +11,9 @@
              {% if is_granted('IS_AUTHENTICATED_FULLY') %}
               <a href="/logout">LOGOUT</a>
              {% endif %}
+             {% if is_granted('ROLE_ADMIN') %}
+              <a href="/admin">ADMIN PANEL</a>
+             {% endif %}
         <div id="content">
             {% block body %}{% endblock %}
         </div>

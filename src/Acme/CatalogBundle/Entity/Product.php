@@ -49,14 +49,22 @@ class Product
      */
     private $price;
 
+    
+
+    
+    
     /**
-     * @var float $userid
-     *
-     * @ORM\Column(name="userid", type="float")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="uid")
+     * @ORM\JoinColumn(name="userid", referencedColumnName="id")
      */
-    private $userid;
-
-
+    protected $users;
+    
+    
+    
+    
+    
+    
+    
     /**
      * Get id
      *
@@ -166,4 +174,27 @@ class Product
     {
         return $this->userid;
     }
+
+
+
+    /**
+     * Set users
+     *
+     * @param Acme\CatalogBundle\Entity\User $users
+     */
+    public function setUsers(\Acme\CatalogBundle\Entity\User $users)
+    {
+        $this->users = $users;
+    }
+
+    /**
+     * Get users
+     *
+     * @return Acme\CatalogBundle\Entity\User 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
 }

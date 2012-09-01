@@ -3,7 +3,7 @@
 {% block title %}Главная страница{% endblock %}
 
 {% block body %}
-
+            
     <center><h1>Каталог товаров</h1></center>
     <center>Добро пожаловать  <b>{{ info['user'] }}</b>!</center><br>
     <center>{{ info['auth'] | raw }}</center>
@@ -13,14 +13,15 @@
     <div style="width: 600px; height: auto; margin: 0 auto;">
 
         {% for product in products %}
-          <div style="float:left; width:290px; height:210px; border: 1px solid #00aa00; margin:4px;">
+          <div style="float:left; width:290px; height:210px; border: 1px solid #0088cc; margin:4px;">
               <br>
               <center>Название: <b>{{ product.name }}</b></center>
               <center>Описание: <b>{{ product.description }}</b></center>
               <center>     
-                <img src="{{ product.img }}" width="189" height="255" alt="{{ product.name }}">
+                <img src="http://localhost/Symfony/{{ product.img }}" width="189" height="255" alt="{{ product.name }}">
               </center>
               <center>Цена: <b style="color:red;">{{ product.price }}</b> y.e</center>
+              <center>Товар пользователя: <b>{{ product.users.username }}</b></center>
           </div>              
         {% endfor %}   
         
