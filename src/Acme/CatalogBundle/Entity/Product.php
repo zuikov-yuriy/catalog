@@ -55,7 +55,7 @@ class Product
     
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="uid")
-     * @ORM\JoinColumn(name="userid", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $users;
     
@@ -196,5 +196,7 @@ class Product
     {
         return $this->users;
     }
+
+
 
 }

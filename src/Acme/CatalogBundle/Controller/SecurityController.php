@@ -90,7 +90,7 @@ class SecurityController extends Controller
                         $data = $form->getData();
                         $em = $this->getDoctrine()->getEntityManager();
                         
-                        $role->setName('ROLE_USER');
+                        $role->setName('ROLE_USER');   //Не правильно так );
                         $em->persist($role);
 
                         $user->setFirstName($data->getFirstName());

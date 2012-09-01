@@ -36,7 +36,7 @@ class DefaultController extends Controller
                  $product = $query->getResult();
 
                  //  foreach ($product as $p) {
-                 //   $idd. = $p->getUsers()-> getUsername();
+                 //   $idd .= $p->getUsers()-> getUsername();
                  // }
     
                   
@@ -47,7 +47,7 @@ class DefaultController extends Controller
                  $info['title'] = '';  
                  $product = $this->getDoctrine()
                         ->getRepository('AcmeCatalogBundle:Product')
-                        ->findByUserid($secur->getToken()->getUser()->getId());
+                        ->findByUsers($secur->getToken()->getUser()->getId());
                  
         
                 }
@@ -76,7 +76,7 @@ class DefaultController extends Controller
                     ->add('Description', 'text')
                     ->add('Img', 'file')
                     ->add('Price', 'text')
-                    ->add('Userid', 'choice', array(
+                    ->add('Users', 'choice', array(
                             'choices'=>$userSelect,
                             'required' => false,
                           ))
@@ -90,12 +90,12 @@ class DefaultController extends Controller
                         $file = $form['Img']->getData();
                         $secur = $this->get('security.context');
                         
-                        $uf = explode("-" , $product->getUserid());
+                        $uf = explode("-" , $product->getUsers());
                         $file->move($_SERVER['DOCUMENT_ROOT'].'/Symfony/img/'.$uf[0], $file->getClientOriginalName());
                         
                          $create = $form->getData();
                          
-                         $product->setUserid($uf[1]);
+                         $product->setUsers($uf[1]);
                          $product->setImg('img/'.$uf[0].'/'.$file->getClientOriginalName()); 
                          
                          $em = $this->getDoctrine()->getEntityManager();

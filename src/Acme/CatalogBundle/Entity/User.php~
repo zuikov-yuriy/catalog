@@ -99,9 +99,9 @@ class User implements UserInterface
      */
     public function __construct()
     {
+        $this->uid = new ArrayCollection();
         $this->userRoles = new ArrayCollection();
         $this->createdAt = new \DateTime();
-        $this->uid = new ArrayCollection();
     }
     
     
