@@ -16,11 +16,13 @@ Acme\CatalogBundle\Entity\User:
             - NotBlank: ~
             - MinLength: 3
         email:
-            - NotBlank: ~
-            - MinLength: 3          
+            - Email:
+                message: The email "{{ value }}" is not a valid email.
+                checkMX: false        
         username:
             - NotBlank: ~
-            - MinLength: 3        
+            - MinLength: 3   
+            
         password:
             - NotBlank: ~
             - MinLength: 3          

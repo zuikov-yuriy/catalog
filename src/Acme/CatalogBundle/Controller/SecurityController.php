@@ -90,13 +90,13 @@ class SecurityController extends Controller
                         $data = $form->getData();
                         $em = $this->getDoctrine()->getEntityManager();
                         
-                        $role->setName('ROLE_USER');   //Не правильно так );
+                        $role->setName('ROLE_USER');   //Не правильно );
                         $em->persist($role);
 
                         $user->setFirstName($data->getFirstName());
                         $user->setLastName($data->getLastName());
                         $user->setEmail($data->getEmail());
-                        $user->setUserName($data->getUserName());
+                        $user->setUserName($data->getUserName());  //Нужна проверка на присутствие логина
                         $user->setSalt(md5(time()));
                         
                         $encoder = new MessageDigestPasswordEncoder('sha512', true, 10);

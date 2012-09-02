@@ -19,7 +19,7 @@
             <directory>../src/*/Bundle/*Bundle/Tests</directory>
         </testsuite>
     </testsuites>
-
+    
     <!--
     <php>
         <server name="KERNEL_DIR" value="/path/to/your/app/" />
