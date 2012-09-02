@@ -1,8 +1,7 @@
 admin:
     pattern:   /admin/
     defaults:  { _controller: AcmeCatalogBundle:Default:admin } 
-
-
+    
 AcmeCatalogBundle:
     resource: "@AcmeCatalogBundle/Controller/"
     type: annotation

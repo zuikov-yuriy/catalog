@@ -3,15 +3,14 @@
 {% block title %} - Админ панел{% endblock %}
 
 {% block body %}
+        <center><h2>Форма добавления товара!!</h2></center>
+                <div style="margin:0 auto; width:225px;">
+                       <form action="{{ path('admin')}}" method="post" {{ form_enctype(form) }}>
+                          {{ form_widget(form) }}
 
-  <div style="margin:0 auto; width:225px;">
-     <center> Форма добавления товара!!</center>
-         <form action="{{ path('admin')}}" method="post" {{ form_enctype(form) }}>
-            {{ form_widget(form) }}
-
-            <input type="submit" class="btn"/>
-        </form>
-  </div>   
+                          <input type="submit" class="btn"/>
+                      </form>
+                </div>   
         
  <div style="margin:0 auto; width:600px;">
      <center><h2>Продукты каталога</h2></center>
@@ -26,8 +25,9 @@
                Цена: <b style="color:red;">{{ product.price }}</b> y.e
               </div>  
               <div style="float:right;">    
-                Пользователь: <b>{{ product.users.username }}</b>
-                
+                Пользователь: <b>{{ product.users.username }}</b><br>
+                <a href="/admin/deleteproduct/{{ product.id }}">Удалить товар</a><br>
+                <a href="/admin/editproduct/{{ product.id }}">Редактировать товар</a>
               </div>     
                   
                 <div style="clear: both;"></div>
