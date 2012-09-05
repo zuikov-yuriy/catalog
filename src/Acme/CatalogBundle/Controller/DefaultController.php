@@ -2,6 +2,8 @@
 
 namespace Acme\CatalogBundle\Controller;
 
+
+
 use JMS\SecurityExtraBundle\Annotation\Secure;
 
 use Acme\CatalogBundle\Entity\Product;
