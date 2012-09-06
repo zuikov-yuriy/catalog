@@ -1,0 +1,28 @@
+Acme\CatalogBundle\Entity\Task:
+    properties:
+        task:
+            - NotBlank: ~
+            - MinLength: 3
+        dueDate:
+            - NotBlank: ~
+            - Type: \DateTime
+            
+Acme\CatalogBundle\Entity\User:
+    properties:
+        firstName:
+            - NotBlank: ~
+            - MinLength: 3
+        lastName:
+            - NotBlank: ~
+            - MinLength: 3
+        email:
+            - Email:
+                message: The email "{{ value }}" is not a valid email.
+                checkMX: false        
+        username:
+            - NotBlank: ~
+            - MinLength: 3   
+            
+        password:
+            - NotBlank: ~
+            - MinLength: 3          

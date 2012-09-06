@@ -80,6 +80,7 @@ class DefaultController extends Controller
                             'choices'=>$userSelect,
                             'required' => false,
                           ))
+     
                     ->getForm();
        
                if ($request->getMethod() == 'POST') {
@@ -122,16 +123,10 @@ class DefaultController extends Controller
        */
     public function editproductAction(Request $request, $id)
        { 
-          $em = $this->getDoctrine()->getEntityManager();
-          $product = $em->getRepository('AcmeCatalogBundle:Product')->find($id);
-        
-          $users = $this->getDoctrine()
-                    ->getRepository('AcmeCatalogBundle:User')
-                    ->findAll();
 
-   
+
           return $this->render('AcmeCatalogBundle:Default:editproduct.html.twig', 
-             array('product' => $product, 'users' => $users,  ));
+             array('id' => $id,));
        }
        
 

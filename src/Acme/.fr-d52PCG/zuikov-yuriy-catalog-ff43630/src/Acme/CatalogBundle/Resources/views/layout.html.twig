@@ -3,10 +3,10 @@
     <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	  <title>{% block title %}Test Application{% endblock %}</title>
-	  <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	  <link href="http://localhost/Symfony/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-	    <script src="/bootstrap/js/bootstrap.min.js"></script>
+	    <script src="http://localhost/Symfony/bootstrap/js/bootstrap.min.js"></script>
 	    <a href="/"><img src="{{ asset("Symfony/img/logo.gif") }}" alt="Symfony"></a>
              {% if is_granted('IS_AUTHENTICATED_FULLY') %}
               <a href="/logout">LOGOUT</a>
@@ -14,7 +14,7 @@
              {% if is_granted('ROLE_ADMIN') %}
               <a href="/admin">ADMIN PANEL</a>
              {% endif %}
-         <div id="content">
+        <div id="content">
             {% block body %}{% endblock %}
         </div>
     </body>
