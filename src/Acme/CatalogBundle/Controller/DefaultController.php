@@ -252,6 +252,56 @@ class DefaultController extends Controller
 
 
     
+    
+    /**
+   * @Route("/refresh")
+   * @Template()
+   * 
+   */
+    public function refreshAction()
+    {
+        $session                = $this->container->get('session');       
+        $gregwarCaptchaConfig   = $this->container->getParameter('gregwar_captcha.config');       
+        $captchaType            = new \Gregwar\CaptchaBundle\Type\CaptchaType($session, $gregwarCaptchaConfig);
+        $key                    = $captchaType->getName();
+
+        
+        
+        $value = '';
+        $chars = str_split($gregwarCaptchaConfig['charset']);
+
+        for ($i=0; $i<$gregwarCaptchaConfig['length']; $i++) {
+            $value.= $chars[array_rand($chars)];
+        }
+
+        $session->set($key, $value);
+       
+
+        $generator = new \Gregwar\CaptchaBundle\Generator\CaptchaGenerator(
+            $value,
+            $gregwarCaptchaConfig['image_folder'],
+            $gregwarCaptchaConfig['web_path'],
+            $gregwarCaptchaConfig['gc_freq'],
+            $gregwarCaptchaConfig['expiration'],
+            $gregwarCaptchaConfig['font'],
+            null,
+            $gregwarCaptchaConfig['quality']
+        );
+        $src = $generator->getCode($gregwarCaptchaConfig['width'], $gregwarCaptchaConfig['height']);
+
+        $img = '<img src="'.$src.'"/>';
+
+        return new Response($img);
+  
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * @Route ("/create/")
      * @Template()
