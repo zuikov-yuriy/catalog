@@ -7,7 +7,7 @@
     </head>
     <body>
 	    <script src="/bootstrap/js/bootstrap.min.js"></script>
-	    <a href="/"><img src="{{ asset("Symfony/img/logo.gif") }}" alt="Symfony"></a>
+	    <a href="/"><img src="{{ asset("/Symfony/img/logo.gif") }}" alt="Symfony"></a>
              {% if is_granted('IS_AUTHENTICATED_FULLY') %}
               <a href="/logout">LOGOUT</a>
              {% endif %}

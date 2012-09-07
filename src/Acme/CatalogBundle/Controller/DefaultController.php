@@ -120,7 +120,7 @@ class DefaultController extends Controller
        * @Template()
        * 
        */
-    public function editproductAction(Request $request, $id)
+    public function editproductAction($id)
        { 
           $em = $this->getDoctrine()->getEntityManager();
           $product = $em->getRepository('AcmeCatalogBundle:Product')->find($id);
@@ -129,12 +129,43 @@ class DefaultController extends Controller
                     ->getRepository('AcmeCatalogBundle:User')
                     ->findAll();
 
-   
           return $this->render('AcmeCatalogBundle:Default:editproduct.html.twig', 
              array('product' => $product, 'users' => $users,  ));
        }
        
 
+       
+      /**
+       * @Route("/admin/updateproduct")
+       * @Template()
+       * 
+       */
+    public function updateproductAction()
+       { 
+               $request = Request::createFromGlobals();
+               $post = $request->request;
+               
+               $em = $this->getDoctrine()->getEntityManager();
+               
+               $product = $em->getRepository('AcmeCatalogBundle:Product')->find($post->get('id'));
+               $user = $em->getRepository('AcmeCatalogBundle:User')->find($post->get('userid'));
+               
+               $product->setName($post->get('name'));
+               $product->setDescription($post->get('description'));
+               $product->setImg($post->get('img'));
+               $product->setPrice($post->get('price'));
+               
+               $product->setUsers($user);
+               
+               
+               $em->flush();
+               
+               return $this->redirect('/admin');
+       
+       }
+       
+ 
+       
       /**
        * @Route("/admin/deleteproduct/{id}")
        * @Template()

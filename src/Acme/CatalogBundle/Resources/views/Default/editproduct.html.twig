@@ -5,17 +5,18 @@
 {% block body %}
       
 
-<center>Редактирование продукта с id {{ product.name }}!</center>
+<center>Редактирование продукта  {{ product.name }}!</center>
            
 
 <div style="margin:0 auto; width:225px;">
 
-      <form action="" method="post">
-		<input type="text"  value="{{ product.name }}" />
-		<input type="text"  value="{{ product.description }}" />
-                <input type="text"  value="{{ product.img }}" />
-                <input type="text"  value="{{ product.price }}" />
-                <select>
+      <form action="/admin/updateproduct" method="post">
+                <input type="hidden" name="id" value="{{ product.id }}" />
+		<input type="text" name="name" value="{{ product.name }}" />
+		<input type="text" name="description" value="{{ product.description }}" />
+                <input type="text" name="img" value="{{ product.img }}" />
+                <input type="text" name="price" value="{{ product.price }}" />
+                <select name="userid">
                   {% for user in users %}   
                         <option value="{{ user.id }}">{{ user.username }}</option> 
                   {% endfor %} 
