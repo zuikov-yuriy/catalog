@@ -82,6 +82,9 @@ class SecurityController extends Controller
                                                     'second_name' => 'confirm',
                                                     'type' => 'password',
                                                  ))
+                    ->add('captcha', 'captcha', array(
+                                                    'keep_value' => false,
+                                                ))
                     ->getForm();
                
                 if ($request->getMethod() == 'POST') {

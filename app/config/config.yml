@@ -20,6 +20,7 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+
 # Assetic Configuration
 assetic:
     debug:          %kernel.debug%
@@ -57,3 +58,5 @@ swiftmailer:
 jms_security_extra:
     secure_controllers:  true
     secure_all_services: false
+
+gregwar_captcha: ~

@@ -2,6 +2,11 @@
     git=http://github.com/symfony/symfony.git
     version=origin/2.0
 
+[GenemuFormBundle]
+    git=git://github.com/genemu/GenemuFormBundle.git
+    target=bundles/Genemu/Bundle/FormBundle
+    version=origin/2.0
+
 [twig]
     git=http://github.com/fabpot/Twig.git
     version=v1.8.2
